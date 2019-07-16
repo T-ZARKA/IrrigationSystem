@@ -22,19 +22,9 @@ public interface JsonPlaceHolderAPI {
         //we want list of water system objects to be returned from the response
     Call<List<water_system>> getInfo();
 
-    @PUT("json_get{id}.php")
-    Call<water_system> updatePump(@Path("id") int id, @Body water_system w);//when you have more than one attribute
+  /*  @PUT("json_get{id}.php")
+    Call<water_system> updatePump(@Path("id") int id, @Body water_system w);//when you have more than one attribute*/
 
     @PATCH("json_get{id}.php")
     Call<water_system> patchPump(@Path("id") int id, @Body water_system w);//when you have one attribute
 }
-  //to be used later
-    // /*@Query("id") int ID*/
-   /* @GET("json_get{id}.php")
-    Call<List<water_system>> getInfo1(@Path("id") int ID);
-
-    @POST("json_get.php")
-   Call<water_system> createWaterSystem (@Body water_system w);
-
-
-*/
