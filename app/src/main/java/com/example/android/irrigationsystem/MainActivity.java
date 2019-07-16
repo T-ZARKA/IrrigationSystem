@@ -189,7 +189,7 @@ off.setOnClickListener(new View.OnClickListener() {
     private void updatePump(final String p1){
         String msg=usermsg.toString();
         water_system w =new water_system("15","18","45","1",msg);
-        Call<water_system> call =jsonPlaceHolderAPI.updatePump(1,w);
+        Call<water_system> call =jsonPlaceHolderAPI.patchPump(1,w);
         call.enqueue(new Callback<water_system>() {
             @Override
             public void onResponse(Call<water_system> call, Response<water_system> response) {
