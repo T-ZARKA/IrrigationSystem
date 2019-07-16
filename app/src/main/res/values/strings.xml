@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">IrrigationSystem</string>
+    <string name="enter_user_message">Enter user Message</string>
 </resources>
