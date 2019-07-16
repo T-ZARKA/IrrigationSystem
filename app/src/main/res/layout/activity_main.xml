@@ -124,16 +124,6 @@
                         android:textColor="@android:color/black" />
 
                     <TextView
-                        android:id="@+id/textView10"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="3dp"
-                        android:layout_marginLeft="7dp"
-                        android:layout_marginRight="6dp"
-                        android:text="Soil Humidity :"
-                        android:textColor="@android:color/black" />
-
-                    <TextView
                         android:id="@+id/textView11"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -142,6 +132,14 @@
                         android:layout_marginRight="6dp"
                         android:text="Pumb : "
                         android:textColor="@android:color/black" />
+
+                    <EditText
+                        android:id="@+id/usermsgET"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="Enter user Message"
+                        android:inputType="textPersonName" />
 
                 </LinearLayout>
 
@@ -156,6 +154,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
+                        android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
                         android:text="nonenone"
                         android:textColor="@android:color/black" />
@@ -164,6 +163,8 @@
                         android:id="@+id/off"
                         android:layout_width="70dp"
                         android:layout_height="29dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="10dp"
                         android:layout_marginBottom="3dp"
                         android:background="#1c35d3"
                         android:paddingLeft="5dp"
@@ -179,6 +180,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
+                        android:layout_marginRight="10dp"
                         android:layout_marginBottom="3dp"
                         android:text="nonenone"
                         android:textColor="@android:color/black" />
@@ -188,6 +190,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
+                        android:layout_marginRight="10dp"
                         android:layout_marginBottom="3dp"
                         android:text="nonenone"
                         android:textColor="@android:color/black" />
@@ -197,15 +200,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
-                        android:layout_marginBottom="3dp"
-                        android:text="nonenone"
-                        android:textColor="@android:color/black" />
-
-                    <TextView
-                        android:id="@+id/sh_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="10dp"
                         android:layout_marginBottom="3dp"
                         android:text="nonenone"
                         android:textColor="@android:color/black" />
@@ -215,10 +210,36 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
+                        android:layout_marginRight="10dp"
                         android:layout_marginBottom="3dp"
                         android:text="nonenone"
                         android:textColor="@android:color/black" />
+
+                    <Button
+                        android:id="@+id/enter"
+                        android:layout_width="match_parent"
+                        android:layout_height="31dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="3dp"
+                        android:background="#1c35d3"
+                        android:paddingLeft="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="5dp"
+                        android:text="enter"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp" />
+                        />
+
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="#FD000000" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

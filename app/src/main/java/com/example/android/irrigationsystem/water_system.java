@@ -8,6 +8,12 @@ public class water_system {
     private String temp;
        private String humidity;
     private String pump;
+    private String user_msg;
+
+    public String getUser_msg() {
+        return user_msg;
+    }
+
     private String reg_date;
     public int getId() {
         return id;
@@ -31,11 +37,15 @@ public class water_system {
         return pump;
     }
 
+    public void setPump(String p) {
+        pump = p;
+    }
 
-    public water_system(String level, String temp, String humidity, String pump) {
-        this.level = level;
-        this.temp = temp;
-        this.humidity = humidity;
-        this.pump = pump;
+    public water_system(String l, String t, String h, String p,String um) {
+        level = l;
+        temp = t;
+        humidity = h;
+       pump = p;
+       user_msg = um;
     }
 }

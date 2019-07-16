@@ -1,11 +1,12 @@
 package com.example.android.irrigationsystem;
-//we implemented retofit library and gson converter library in the gradle
+//we implemented retrofit library and gson converter library in the gradle
 //we set user permission for the internet in the manifest
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
@@ -27,8 +28,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
   //  we need to connect our layout with out java code so declare variables of the same type in the layout
-    TextView l, t, h, p, d;
+    TextView l, t, h, p, d,m;
     Button on, off;
+    EditText usermsg;
 private JsonPlaceHolderAPI jsonPlaceHolderAPI;
     @Override
     protected void onCreate(Bundle savedInstanceState)// here where it all starts
@@ -46,8 +48,21 @@ private JsonPlaceHolderAPI jsonPlaceHolderAPI;
         d = findViewById(R.id.d_tv);
         on = findViewById(R.id.on);
         off = findViewById(R.id.off);
+        usermsg = findViewById(R.id.usermsgET);
+        m=findViewById(R.id.message);
+on.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        updatePump("1");
 
-
+    }
+});
+off.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        updatePump("0");
+    }
+});
        //this is to convert from gson object to java object
          Gson gson = new GsonBuilder()
                 .setLenient()
@@ -61,7 +76,8 @@ private JsonPlaceHolderAPI jsonPlaceHolderAPI;
 
          jsonPlaceHolderAPI = retrofit.create(JsonPlaceHolderAPI.class);//here so we can use the methods in our interface
        // no need for implementation retrofit take cares of it
-         getInfo(); // function call
+        getInfo(); // function call
+
 
             }
     private void getInfo(){
@@ -91,6 +107,8 @@ private JsonPlaceHolderAPI jsonPlaceHolderAPI;
                         h.setText(i.getHumidity());
                         p.setText(i.getPump());
                         d.setText(i.getDate());
+                        m.setText(i.getUser_msg());
+
                     }
 
             }
@@ -98,7 +116,7 @@ private JsonPlaceHolderAPI jsonPlaceHolderAPI;
             @Override
             public void onFailure(Call<List<water_system>> call, Throwable t) {
               //this function in case there is error when we communicate it with the server
-                /* is a super class of exception and erros*/
+                /* is a super class of exception and errors*/
                 Log.e("tag", t.getMessage());
                 //print the error message in the logcat in android studio "programmer purposes"
 
@@ -106,11 +124,6 @@ private JsonPlaceHolderAPI jsonPlaceHolderAPI;
         });
     }
 
-
-
-
-
-    //to be used later
    private void getInfo1(){
      /*   Call<List<water_system>> call= jsonPlaceHolderAPI.getInfo1(1);
         call.enqueue(new Callback<List<water_system>>() {
@@ -173,29 +186,22 @@ private JsonPlaceHolderAPI jsonPlaceHolderAPI;
             }
         });*/
     }
-    private void update(){
-       /* water_system w =new water_system("45","56","56","0");
-        Call<water_system> call = jsonPlaceHolderAPI.Update(1,w);
+    private void updatePump(final String p1){
+        String msg=usermsg.toString();
+        water_system w =new water_system("15","18","45","1",msg);
+        Call<water_system> call =jsonPlaceHolderAPI.updatePump(1,w);
         call.enqueue(new Callback<water_system>() {
             @Override
             public void onResponse(Call<water_system> call, Response<water_system> response) {
-                if (!response.isSuccessful()) {
-                    d.setText("Code: "+ response.code());
-                    return;
-                }
-                else {
-                    water_system sysInfo = response.body();
+                water_system sysInfo = response.body();
 
-
-                    //  "ID"+i.getId() + "\n"+
-                    l.setText(sysInfo.getLevel());
-                    t.setText(sysInfo.getTemp());
+                    l.setText(sysInfo.getLevel());//methods declared in our water_system java class
+                    t.setText(sysInfo.getTemp());//set text is to show data on the layout
                     h.setText(sysInfo.getHumidity());
                     p.setText(sysInfo.getPump());
-                    d.setText("Cod: "+response.code());
-                    // d.setText(sysInfo.getDate());
+                    d.setText(sysInfo.getDate());
+                    m.setText(sysInfo.getUser_msg());
 
-                }
             }
 
             @Override
@@ -203,7 +209,8 @@ private JsonPlaceHolderAPI jsonPlaceHolderAPI;
                 Log.e("tag", t.getMessage());
 
             }
-        });*/
+        });
+
     }
 
 }
