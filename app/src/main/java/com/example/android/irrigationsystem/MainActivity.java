@@ -44,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
 
         //to connect with the layout we give
         // each variable the id of what we want to connect with from the layout
-        final Dialog dialog;
-        l = findViewById(R.id.l_tv);
+        final Dialog dialog; //to show the waning window if user didn't fill the user message
+        l = findViewById(R.id.l_tv);//connect the layout with my coding
         t = findViewById(R.id.t_tv);
         h = findViewById(R.id.h_tv);
         p = findViewById(R.id.pumb_tv);
@@ -57,26 +57,26 @@ public class MainActivity extends AppCompatActivity {
         enter = findViewById(R.id.enter);
         on.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                updatePump("1");
+            public void onClick(View view) {//activate when user click on  "ON Button"
+                updatePump("1"); //send one to the function to turn the pump on
 
             }
         });
         off.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                updatePump("0");
+            public void onClick(View view) {//activate when user click on  "OFF Button"
+                updatePump("0");//send 0 to the function to turn the pump off
             }
         });
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view) {//activate when user click on  "ENTER Button" to enter the msg
                 String msg;
-                msg = usermsg.getText().toString();
-                if (!msg.matches("")) {
-                    updateMsg(msg);
+                msg = usermsg.getText().toString();//get the message from the edit text
+                if (!msg.matches("")) { //in case the edit text is not empty
+                    updateMsg(msg);//send the msg to updated in the database
 
-                } else{
+                } else{//in case is empty show warning dialog
                     DialogMsg m = new DialogMsg();
                     m.show(getSupportFragmentManager(), "Warning");
 
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         getInfo(); // function call
 
     }
-
+    //display data
     private void getInfo() {
         // to execute our get request we use the call object defined earlier
         Call<List<water_system>> call = jsonPlaceHolderAPI.getInfo();
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
+    //update all attributes for a specified id
     private void update(final String p1) {
         String msg;
         if (!usermsg.toString().isEmpty()) {
@@ -173,38 +173,42 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //update the pump only for a specified id
     private void updatePump(final String p1){
-        Call<water_system> call=jsonPlaceHolderAPI.updatePump(1,p1);
-        call.enqueue(new Callback<water_system>() {
+        Call<water_system> call=jsonPlaceHolderAPI.updatePump(1,p1);//call the function in the API and send the pump value
+        call.enqueue(new Callback<water_system>() {//execute
             @Override
             public void onResponse(Call<water_system> call, Response<water_system> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    getInfo();
+                if (response.isSuccessful() && response.body() != null) {//if execution is successful
+                    getInfo();//display updated the data
                 }
             }
 
             @Override
-            public void onFailure(Call<water_system> call, Throwable t) {
-                Log.e("TAG",t.getMessage());
+            public void onFailure(Call<water_system> call, Throwable t) {//if execution is not successful
+                Log.e("TAG",t.getMessage());//show the error
 
             }
         });
 
 
     }
+
+    //update the user_msg only for a specified id
     private void updateMsg(String msg){
-        Call<water_system> call=jsonPlaceHolderAPI.updateMsg(1,msg);
-        call.enqueue(new Callback<water_system>() {
+        Call<water_system> call=jsonPlaceHolderAPI.updateMsg(1,msg);//call the function in the API and send the pump value
+        call.enqueue(new Callback<water_system>() {//execute
+
             @Override
             public void onResponse(Call<water_system> call, Response<water_system> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    getInfo();
+                if (response.isSuccessful() && response.body() != null) {//if execution is successful
+                    getInfo();//display updated data
                 }
             }
 
             @Override
-            public void onFailure(Call<water_system> call, Throwable t) {
-                Log.e("TAG",t.getMessage());
+            public void onFailure(Call<water_system> call, Throwable t) {//if execution is not successful
+                Log.e("TAG",t.getMessage());//show the error
 
             }
         });

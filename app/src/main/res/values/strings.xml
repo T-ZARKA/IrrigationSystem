@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">IrrigationSystem</string>
     <string name="enter_user_message">Enter user Message</string>
+    <string name="smart_irrigation_system">Smart Irrigation System</string>
+    <string name="air_temp">Air Temp :</string>
+    <string name="water_level">Water Level :</string>
+    <string name="nonenone">nonenone</string>
 </resources>

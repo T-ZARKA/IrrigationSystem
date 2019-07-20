@@ -24,8 +24,8 @@ public interface JsonPlaceHolderAPI {
     Call<List<water_system>> getInfo();
 
     @FormUrlEncoded
-    @POST("json_updateAll.php")
-    Call<water_system> uP
+    @POST("json_updateAll.php")//this file contains sql query update all where id= id
+    Call<water_system> uP  //to update all attributes we send all parameters
             (@Field("id") int id,
              @Field("level") String level,
              @Field("temp") String temp,
@@ -36,16 +36,18 @@ public interface JsonPlaceHolderAPI {
             );
 
     @FormUrlEncoded
-    @POST("json_updatePump.php")
+    @POST("json_updatePump.php")//this file contains sql query update pump where id= id
+        //to update the pump only we send the new pump value and the id of it
+        // ,it well read th file json_updatePump.php
     Call<water_system> updatePump
-            (@Field("id") int id,
-             @Field("pump") String pump             );
+            (@Field("id") int id, //it well be send to the file
+             @Field("pump") String pump    /*it well be send to the file */        );
 
     @FormUrlEncoded
-    @POST("json_updateMsg.php")
+    @POST("json_updateMsg.php")//this file contains sql query update user_msg where id= id
     Call<water_system> updateMsg
-            (@Field("id") int id,
-             @Field("user_msg") String user_msg   );
+            (@Field("id") int id,//it well be send to the file
+             @Field("user_msg") String user_msg  /*it well be send to the file */ );
 
 
 }
